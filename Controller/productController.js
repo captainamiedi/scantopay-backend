@@ -5,12 +5,12 @@ import statusCode from "../Utils/statusCode"
 export default {
     createProduct: async (req, res) => {
         try {
-            const {name, image, price, quality, productCode, storeId} = req.body
+            const {name, image, price, quantity, productCode, storeId} = req.body
             const productObj = {
                 name,
                 image,
                 price, 
-                quality, 
+                quantity, 
                 productCode,
                 storeId
             }

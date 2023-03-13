@@ -9,7 +9,7 @@ export default {
         if (!name || !name.trim()) {
             return errorResponse(res, statusCode.badRequest, 'Name is Required')
         }
-        if (!price || !price.trim()) {
+        if (!price) {
             return errorResponse(res, statusCode.badRequest, 'Price is Required')
         }
         if (!storeId || !storeId.trim()) {

@@ -20,7 +20,7 @@ module.exports = {
         type: Sequelize.DECIMAL(10, 2),
         allowNull: false
       },
-      quality: {
+      quantity: {
         type: Sequelize.INTEGER,
         defaultValue: 1
       },
