@@ -6,12 +6,13 @@ _dotenv["default"].config();
 var _process$env = process.env,
   DB_HOST = _process$env.DB_HOST,
   DB_USERNAME = _process$env.DB_USERNAME,
-  DB_PASSWORD = _process$env.DB_PASSWORD;
+  DB_PASSWORD = _process$env.DB_PASSWORD,
+  DATABASE_NAME = _process$env.DATABASE_NAME;
 module.exports = {
   "development": {
     "username": DB_USERNAME,
     "password": DB_PASSWORD,
-    "database": "scanToPay_dev",
+    "database": DATABASE_NAME,
     "host": DB_HOST,
     "dialect": "postgres",
     pool: {
@@ -24,7 +25,7 @@ module.exports = {
   "test": {
     "username": DB_USERNAME,
     "password": DB_PASSWORD,
-    "database": "scanToPay_test",
+    "database": DATABASE_NAME,
     "host": DB_HOST,
     "dialect": "postgres",
     pool: {
@@ -37,7 +38,7 @@ module.exports = {
   "production": {
     "username": DB_USERNAME,
     "password": DB_PASSWORD,
-    "database": "scanToPay_prod",
+    "database": DATABASE_NAME,
     "host": DB_HOST,
     "dialect": "postgres",
     pool: {
