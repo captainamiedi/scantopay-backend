@@ -9,16 +9,30 @@ var _fs = _interopRequireDefault(require("fs"));
 var _path = _interopRequireDefault(require("path"));
 var _sequelize = _interopRequireDefault(require("sequelize"));
 var _dotenv = _interopRequireDefault(require("dotenv"));
+var _inspector = require("inspector");
 _dotenv["default"].config();
 var env = process.env.NODE_ENV || 'development';
 var config = require('../config/config.js')[env];
 var db = {};
+var _process$env = process.env,
+  PGHOST = _process$env.PGHOST,
+  PGDATABASE = _process$env.PGDATABASE,
+  PGUSER = _process$env.PGUSER,
+  PGPASSWORD = _process$env.PGPASSWORD,
+  ENDPOINT_ID = _process$env.ENDPOINT_ID;
 var sequelize;
-if (config.use_env_variable) {
-  sequelize = new _sequelize["default"](process.env[config.use_env_variable], config);
-} else {
-  sequelize = new _sequelize["default"](config.database, config.username, config.password, config);
-}
+var URL = "postgres://".concat(PGUSER, ":").concat(PGPASSWORD, "@").concat(PGHOST, "/").concat(PGDATABASE, "?options=project%3D").concat(ENDPOINT_ID);
+sequelize = new _sequelize["default"](URL);
+// if (config.use_env_variable) {
+// } else {
+//   sequelize = new Sequelize(
+//     config.database,
+//     config.username,
+//     config.password,
+//     config,
+//   );
+// }
+
 _fs["default"].readdirSync(__dirname).filter(function (file) {
   return file.indexOf('.') !== 0 && file !== 'index.js' && file.slice(-3) === '.js';
 }).forEach(function (file) {
