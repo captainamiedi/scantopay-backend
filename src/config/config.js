@@ -1,12 +1,12 @@
 import dotenv from 'dotenv';
 
 dotenv.config();
-const { DB_HOST, DB_USERNAME, DB_PASSWORD } = process.env;
+const { DB_HOST, DB_USERNAME, DB_PASSWORD, DATABASE_NAME } = process.env;
 module.exports  = {
   "development": {
     "username": DB_USERNAME,
     "password": DB_PASSWORD,
-    "database": "scanToPay_dev",
+    "database": DATABASE_NAME,
     "host": DB_HOST,
     "dialect": "postgres",
     pool: {
@@ -19,7 +19,7 @@ module.exports  = {
   "test": {
     "username": DB_USERNAME,
     "password": DB_PASSWORD,
-    "database": "scanToPay_test",
+    "database": DATABASE_NAME,
     "host": DB_HOST,
     "dialect": "postgres",
     pool: {
@@ -32,7 +32,7 @@ module.exports  = {
   "production": {
     "username": DB_USERNAME,
     "password": DB_PASSWORD,
-    "database": "scanToPay_prod",
+    "database": DATABASE_NAME,
     "host": DB_HOST,
     "dialect": "postgres",
     pool: {
