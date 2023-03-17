@@ -15,7 +15,7 @@ const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 let sequelize;
 const URL = `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?options=project%3D${ENDPOINT_ID}&sslmode=require`;
 
-sequelize = new Sequelize(URL, {
+sequelize = new Sequelize('postgres://captainamiedi:9vAxhDGnT8ZJ@ep-gentle-voice-766866.us-west-2.aws.neon.tech/neondb?sslmode=require', {
   dialect: 'postgres',
   Option: {
     native: true,
@@ -59,15 +59,15 @@ db.Sequelize = Sequelize;
 
 export default db;
 
-// const test = async () => {
-//   try {
-//     await sequelize.authenticate();
-//     console.log('Connection has been established successfully.');
-//   } catch (error) {
-//     console.error('Unable to connect to the database:', error);
-//   }
-// }
-// test()
+const test = async () => {
+  try {
+    await sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+}
+test()
 // import fs from 'fs';
 // import path from 'path';
 // import Sequelize from 'sequelize';
