@@ -15,7 +15,7 @@ const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 let sequelize;
 const URL = `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?options=project%3D${ENDPOINT_ID}&sslmode=require`;
 
-sequelize = new Sequelize('postgres://captainamiedi:9vAxhDGnT8ZJ@ep-gentle-voice-766866.us-west-2.aws.neon.tech/neondb?sslmode=require', {
+sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres',
   Option: {
     native: true,
