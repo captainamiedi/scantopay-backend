@@ -59,15 +59,15 @@ db.Sequelize = Sequelize;
 
 export default db;
 
-const test = async () => {
-  try {
-    await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
-}
-test()
+// const test = async () => {
+//   try {
+//     await sequelize.authenticate();
+//     console.log('Connection has been established successfully.');
+//   } catch (error) {
+//     console.error('Unable to connect to the database:', error);
+//   }
+// }
+// test()
 // import fs from 'fs';
 // import path from 'path';
 // import Sequelize from 'sequelize';
