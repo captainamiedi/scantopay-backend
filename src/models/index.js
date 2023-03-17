@@ -13,9 +13,20 @@ const db = {};
 const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 
 let sequelize;
-const URL = `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?options=project%3D${ENDPOINT_ID}`;
+const URL = `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?options=project%3D${ENDPOINT_ID}&sslmode=require`;
 
-sequelize = new Sequelize(URL);
+sequelize = new Sequelize(URL, {
+  dialect: 'postgres',
+  Option: {
+    native: true,
+    dialectOptions: {
+      ssl: {
+        rejectUnauthorized: false, // very important
+      }
+    }
+
+  },
+});
 // if (config.use_env_variable) {
 // } else {
 //   sequelize = new Sequelize(
@@ -47,6 +58,16 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 export default db;
+
+const test = async () => {
+  try {
+    await sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+}
+test()
 // import fs from 'fs';
 // import path from 'path';
 // import Sequelize from 'sequelize';
