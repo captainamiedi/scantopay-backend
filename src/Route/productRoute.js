@@ -8,9 +8,9 @@ const {createProduct, updateProduct, deleteProduct, getProductByStore} = product
 const {validateProduct} = productValidator
 
 route.post('/product', getToken, verifyToken, validateProduct, createProduct)
-route.put('/product/:id', getToken, verifyToken, validateProduct, updateProduct)
-route.delete('/product/:id', getToken, verifyToken, validateProduct, deleteProduct)
-route.get('/product/:id', getToken, verifyToken, validateProduct, getProductByStore)
+route.put('/product/:id', getToken, verifyToken, updateProduct)
+route.delete('/product/:id', getToken, verifyToken, deleteProduct)
+route.get('/product/:id', getToken, verifyToken, getProductByStore)
 
 
 export default route;
