@@ -1,5 +1,5 @@
-import { createProductService, deleteProductService, updateProductService } from "../Service/productService.js"
-import { errorResponse, successResponse } from "../Utils/response.js"
+import { createProductService, deleteProductService, getProductByStore, updateProductService } from "../Service/productService.js"
+import { errorResponse, successResponse, successResponseWithData } from "../Utils/response.js"
 import statusCode from "../Utils/statusCode.js"
 
 export default {
@@ -50,6 +50,17 @@ export default {
             const product = await deleteProductService(id)
 
             return successResponse(res, statusCode.success, 'Product created successfully')
+        } catch (error) {
+            return errorResponse(res, error.statusCode || statusCode.serverError, error)
+        }
+    },
+    getProductByStore: async (req, res) => {
+        try {
+            const {id} = req.params;
+
+            const products = await getProductByStore(id)
+
+            return successResponseWithData(res, statusCode.success, 'Product created successfully', products)
         } catch (error) {
             return errorResponse(res, error.statusCode || statusCode.serverError, error)
         }
