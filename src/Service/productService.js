@@ -34,3 +34,14 @@ export const deleteProductService = async (id) => {
     }
 }
 
+export const getProductByStore = async (id) => {
+    try {
+        const productRes = await Product.findAll({
+            where: {storeId: id}
+        })
+        return productRes
+    } catch (error) {
+        throw error
+    }
+}
+
