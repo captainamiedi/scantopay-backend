@@ -24,7 +24,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         defaultValue: 1
       },
-      productCode: {
+      productcode: {
         type: Sequelize.STRING,
       },
       storeId: {

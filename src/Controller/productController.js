@@ -5,13 +5,13 @@ import statusCode from "../Utils/statusCode.js"
 export default {
     createProduct: async (req, res) => {
         try {
-            const {name, image, price, quantity, productCode, storeId} = req.body
+            const {name, image, price, quantity, productcode, storeId} = req.body
             const productObj = {
                 name,
                 image,
                 price, 
                 quantity, 
-                productCode,
+                productcode,
                 storeId
             }
 
@@ -31,14 +31,14 @@ export default {
                 image,
                 price, 
                 quality, 
-                productCode,
+                productcode,
                 storeId,
                 id
             }
 
             const product = await updateProductService(productObj)
 
-            return successResponse(res, statusCode.success, 'Product created successfully')
+            return successResponse(res, statusCode.success, 'Product updated successfully')
         } catch (error) {
             return errorResponse(res, error.statusCode || statusCode.serverError, error)
         }
@@ -49,7 +49,7 @@ export default {
 
             const product = await deleteProductService(id)
 
-            return successResponse(res, statusCode.success, 'Product created successfully')
+            return successResponse(res, statusCode.success, 'Product deleted successfully')
         } catch (error) {
             return errorResponse(res, error.statusCode || statusCode.serverError, error)
         }
@@ -60,7 +60,7 @@ export default {
 
             const products = await getProductByStore(id)
 
-            return successResponseWithData(res, statusCode.success, 'Product created successfully', products)
+            return successResponseWithData(res, statusCode.success, 'Product retrieved successfully', products)
         } catch (error) {
             return errorResponse(res, error.statusCode || statusCode.serverError, error)
         }

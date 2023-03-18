@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       defaultValue: 1
     },
-    productCode: {
+    productcode: {
       type: DataTypes.STRING,
     },
     storeId: {

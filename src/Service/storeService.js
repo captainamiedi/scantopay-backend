@@ -40,7 +40,6 @@ export const deleteStoreService = async (id) => {
 export const getAllStoreService = async () => {
     try {
         const storeRes = await Store.findAll()
-        console.log(storeRes, 'store res');
         return storeRes;
     } catch (error) {
        throw error 

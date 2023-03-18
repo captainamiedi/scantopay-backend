@@ -41,6 +41,7 @@ export const getProductByStore = async (id) => {
         })
         return productRes
     } catch (error) {
+        console.log(error, 'error');
         throw error
     }
 }
