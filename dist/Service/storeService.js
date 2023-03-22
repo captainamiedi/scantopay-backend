@@ -111,17 +111,16 @@ var getAllStoreService = /*#__PURE__*/function () {
           return Store.findAll();
         case 3:
           storeRes = _context4.sent;
-          console.log(storeRes, 'store res');
           return _context4.abrupt("return", storeRes);
-        case 8:
-          _context4.prev = 8;
+        case 7:
+          _context4.prev = 7;
           _context4.t0 = _context4["catch"](0);
           throw _context4.t0;
-        case 11:
+        case 10:
         case "end":
           return _context4.stop();
       }
-    }, _callee4, null, [[0, 8]]);
+    }, _callee4, null, [[0, 7]]);
   }));
   return function getAllStoreService() {
     return _ref4.apply(this, arguments);

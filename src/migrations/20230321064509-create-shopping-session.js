@@ -2,28 +2,18 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('OrderDetails', {
+    await queryInterface.createTable('ShoppingSessions', {
       id: {
         allowNull: false,
-        defaultValue: Sequelize.UUIDV4,
+        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.UUID
+        type: Sequelize.INTEGER
       },
       userId: {
         type: Sequelize.UUID
       },
       total: {
-        type: Sequelize.DECIMAL(10, 2)
-      },
-      serviceCharge: {
-        type: Sequelize.DECIMAL(10, 2)
-      },
-      paymentId: {
-        type: Sequelize.UUID
-      },
-      storeId: {
-        type: Sequelize.UUID,
-        allowNull: false,
+        type: Sequelize.DECIMAL
       },
       createdAt: {
         allowNull: false,
@@ -36,6 +26,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('OrderDetails');
+    await queryInterface.dropTable('ShoppingSessions');
   }
 };

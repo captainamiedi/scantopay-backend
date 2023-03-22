@@ -11,14 +11,14 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 var _require = require('sequelize'),
   Model = _require.Model;
 module.exports = function (sequelize, DataTypes) {
-  var Transaction = /*#__PURE__*/function (_Model) {
-    (0, _inherits2["default"])(Transaction, _Model);
-    var _super = _createSuper(Transaction);
-    function Transaction() {
-      (0, _classCallCheck2["default"])(this, Transaction);
+  var ShoppingSession = /*#__PURE__*/function (_Model) {
+    (0, _inherits2["default"])(ShoppingSession, _Model);
+    var _super = _createSuper(ShoppingSession);
+    function ShoppingSession() {
+      (0, _classCallCheck2["default"])(this, ShoppingSession);
       return _super.apply(this, arguments);
     }
-    (0, _createClass2["default"])(Transaction, null, [{
+    (0, _createClass2["default"])(ShoppingSession, null, [{
       key: "associate",
       value:
       /**
@@ -28,58 +28,16 @@ module.exports = function (sequelize, DataTypes) {
        */
       function associate(models) {
         // define association here
-        this.belongsTo(models.User, {
-          foreignKey: 'userId',
-          as: 'user'
-        });
-        this.belongsTo(models.Store, {
-          foreignKey: 'storeId',
-          as: 'store'
-        });
-        this.belongsTo(models.OrderDetails, {
-          foreignKey: 'orderId',
-          as: 'Order'
-        });
       }
     }]);
-    return Transaction;
+    return ShoppingSession;
   }(Model);
-  Transaction.init({
-    storeId: {
-      type: DataTypes.UUID,
-      allowNull: false
-    },
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      allowNull: false,
-      primaryKey: true
-    },
-    total: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    charges: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    subCharges: {
-      type: DataTypes.INTEGER
-    },
-    status: {
-      type: DataTypes.ENUM('Pending', 'Successful', 'Failed', 'Reversed')
-    },
-    userId: {
-      type: DataTypes.UUID,
-      allowNull: false
-    },
-    orderId: {
-      type: DataTypes.UUID,
-      allowNull: false
-    }
+  ShoppingSession.init({
+    userId: DataTypes.UUID,
+    total: DataTypes.DECIMAL
   }, {
     sequelize: sequelize,
-    modelName: 'Transaction'
+    modelName: 'ShoppingSession'
   });
-  return Transaction;
+  return ShoppingSession;
 };

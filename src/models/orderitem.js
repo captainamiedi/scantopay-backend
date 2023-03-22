@@ -11,17 +11,40 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasOne(models.Transaction, {
+        foreignKey: 'orderId'
+      })
+      this.belongsTo(models.Product, {
+        foreignKey: 'productId',
+        as: 'product'
+      })
+      // this.hasMany(models.OrderDetails, {
+      //   foreignKey: 'orderDetailsId',
+      //   as: 'order'
+      // })
     }
   }
   OrderItem.init({
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
+      primaryKey: true
+    },
     productId: {
-      type: DataTypes.UUID
+      type: DataTypes.UUID,
+      allowNull: false,
     },
     quantity: {
       type: DataTypes.INTEGER
     },
+    discount: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
     orderId: {
-      type: DataTypes.UUID
+      type: DataTypes.UUID,
+      allowNull: false
     }
   }, {
     sequelize,

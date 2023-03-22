@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'storeId',
         as: 'store'
       })
+      this.belongsTo(models.OrderDetails, {
+        foreignKey: 'orderId',
+        as: 'Order'
+      })
     }
   }
   Transaction.init({
@@ -47,6 +51,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.ENUM('Pending', 'Successful', 'Failed', 'Reversed')
     },
     userId: {
+      type:DataTypes.UUID,
+      allowNull: false
+    },
+    orderId: {
       type:DataTypes.UUID,
       allowNull: false
     }

@@ -13,18 +13,18 @@ var _statusCode = _interopRequireDefault(require("../Utils/statusCode.js"));
 var _default = {
   createProduct: function () {
     var _createProduct = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
-      var _req$body, name, image, price, quantity, productCode, storeId, productObj, product;
+      var _req$body, name, image, price, quantity, _productcode, storeId, productObj, product;
       return _regenerator["default"].wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            _req$body = req.body, name = _req$body.name, image = _req$body.image, price = _req$body.price, quantity = _req$body.quantity, productCode = _req$body.productCode, storeId = _req$body.storeId;
+            _req$body = req.body, name = _req$body.name, image = _req$body.image, price = _req$body.price, quantity = _req$body.quantity, _productcode = _req$body.productcode, storeId = _req$body.storeId;
             productObj = {
               name: name,
               image: image,
               price: price,
               quantity: quantity,
-              productCode: productCode,
+              productcode: _productcode,
               storeId: storeId
             };
             _context.next = 5;
@@ -61,7 +61,7 @@ var _default = {
               image: image,
               price: price,
               quality: quality,
-              productCode: productCode,
+              productcode: productcode,
               storeId: storeId,
               id: id
             };
@@ -69,7 +69,7 @@ var _default = {
             return (0, _productService.updateProductService)(productObj);
           case 6:
             product = _context2.sent;
-            return _context2.abrupt("return", (0, _response.successResponse)(res, _statusCode["default"].success, 'Product created successfully'));
+            return _context2.abrupt("return", (0, _response.successResponse)(res, _statusCode["default"].success, 'Product updated successfully'));
           case 10:
             _context2.prev = 10;
             _context2.t0 = _context2["catch"](0);
@@ -97,7 +97,7 @@ var _default = {
             return (0, _productService.deleteProductService)(id);
           case 4:
             product = _context3.sent;
-            return _context3.abrupt("return", (0, _response.successResponse)(res, _statusCode["default"].success, 'Product created successfully'));
+            return _context3.abrupt("return", (0, _response.successResponse)(res, _statusCode["default"].success, 'Product deleted successfully'));
           case 8:
             _context3.prev = 8;
             _context3.t0 = _context3["catch"](0);
@@ -112,6 +112,34 @@ var _default = {
       return _deleteProduct.apply(this, arguments);
     }
     return deleteProduct;
+  }(),
+  getProductByStore: function () {
+    var _getProductByStore2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(req, res) {
+      var id, products;
+      return _regenerator["default"].wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            id = req.params.id;
+            _context4.next = 4;
+            return (0, _productService.getProductByStore)(id);
+          case 4:
+            products = _context4.sent;
+            return _context4.abrupt("return", (0, _response.successResponseWithData)(res, _statusCode["default"].success, 'Product retrieved successfully', products));
+          case 8:
+            _context4.prev = 8;
+            _context4.t0 = _context4["catch"](0);
+            return _context4.abrupt("return", (0, _response.errorResponse)(res, _context4.t0.statusCode || _statusCode["default"].serverError, _context4.t0));
+          case 11:
+          case "end":
+            return _context4.stop();
+        }
+      }, _callee4, null, [[0, 8]]);
+    }));
+    function getProductByStore(_x7, _x8) {
+      return _getProductByStore2.apply(this, arguments);
+    }
+    return getProductByStore;
   }()
 };
 exports["default"] = _default;

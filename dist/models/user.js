@@ -36,6 +36,10 @@ module.exports = function (sequelize, DataTypes) {
           foreignKey: 'userId',
           as: 'cartItem'
         });
+        this.hasMany(models.OrderDetails, {
+          foreignKey: 'userId',
+          as: 'orderDetails'
+        });
       }
     }]);
     return User;

@@ -15,8 +15,13 @@ module.exports = {
       quantity: {
         type: Sequelize.INTEGER
       },
+      discount: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+      },
       orderId: {
-        type: Sequelize.UUID
+        type: Sequelize.UUID,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
