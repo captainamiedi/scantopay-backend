@@ -11,26 +11,18 @@ module.exports = {
         while (1) switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return queryInterface.createTable('OrderItems', {
+            return queryInterface.createTable('ShoppingSessions', {
               id: {
                 allowNull: false,
-                defaultValue: Sequelize.UUIDV4,
+                autoIncrement: true,
                 primaryKey: true,
-                type: Sequelize.UUID
-              },
-              productId: {
-                type: Sequelize.UUID
-              },
-              quantity: {
                 type: Sequelize.INTEGER
               },
-              discount: {
-                type: Sequelize.INTEGER,
-                allowNull: true
+              userId: {
+                type: Sequelize.UUID
               },
-              orderId: {
-                type: Sequelize.UUID,
-                allowNull: false
+              total: {
+                type: Sequelize.DECIMAL
               },
               createdAt: {
                 allowNull: false,
@@ -54,7 +46,7 @@ module.exports = {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
             _context2.next = 2;
-            return queryInterface.dropTable('OrderItems');
+            return queryInterface.dropTable('ShoppingSessions');
           case 2:
           case "end":
             return _context2.stop();

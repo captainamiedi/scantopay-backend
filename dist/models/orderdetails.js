@@ -28,22 +28,41 @@ module.exports = function (sequelize, DataTypes) {
        */
       function associate(models) {
         // define association here
+        this.belongsTo(models.User, {
+          foreignKey: 'userId',
+          as: 'user'
+        });
+        this.belongsTo(models.Store, {
+          foreignKey: 'storeId',
+          as: 'store'
+        });
+        this.hasMany(models.OrderItem, {
+          foreignKey: 'orderId',
+          as: 'order'
+        });
       }
     }]);
     return OrderDetails;
   }(Model);
   OrderDetails.init({
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
+      primaryKey: true
+    },
     userId: {
       type: DataTypes.UUID
     },
     total: {
       type: DataTypes.INTEGER
     },
-    charges: {
+    serviceCharge: {
       type: DataTypes.INTEGER
     },
-    paymentId: {
-      type: DataTypes.INTEGER
+    storeId: {
+      type: DataTypes.UUID,
+      allowNull: false
     }
   }, {
     sequelize: sequelize,

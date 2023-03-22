@@ -12,10 +12,12 @@ var _productValidator = _interopRequireDefault(require("../Validator/productVali
 var route = (0, _express.Router)();
 var createProduct = _productController["default"].createProduct,
   updateProduct = _productController["default"].updateProduct,
-  deleteProduct = _productController["default"].deleteProduct;
+  deleteProduct = _productController["default"].deleteProduct,
+  getProductByStore = _productController["default"].getProductByStore;
 var validateProduct = _productValidator["default"].validateProduct;
 route.post('/product', _authMiddleware.getToken, _authMiddleware.verifyToken, validateProduct, createProduct);
-route.put('/product/:id', _authMiddleware.getToken, _authMiddleware.verifyToken, validateProduct, updateProduct);
-route["delete"]('/product/:id', _authMiddleware.getToken, _authMiddleware.verifyToken, validateProduct, deleteProduct);
+route.put('/product/:id', _authMiddleware.getToken, _authMiddleware.verifyToken, updateProduct);
+route["delete"]('/product/:id', _authMiddleware.getToken, _authMiddleware.verifyToken, deleteProduct);
+route.get('/product/:id', _authMiddleware.getToken, _authMiddleware.verifyToken, getProductByStore);
 var _default = route;
 exports["default"] = _default;

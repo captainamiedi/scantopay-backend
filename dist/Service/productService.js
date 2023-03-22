@@ -4,7 +4,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateProductService = exports.deleteProductService = exports.createProductService = void 0;
+exports.updateProductService = exports.getProductByStore = exports.deleteProductService = exports.createProductService = void 0;
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 var _index = _interopRequireDefault(require("../models/index.js"));
@@ -98,3 +98,35 @@ var deleteProductService = /*#__PURE__*/function () {
   };
 }();
 exports.deleteProductService = deleteProductService;
+var getProductByStore = /*#__PURE__*/function () {
+  var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(id) {
+    var productRes;
+    return _regenerator["default"].wrap(function _callee4$(_context4) {
+      while (1) switch (_context4.prev = _context4.next) {
+        case 0:
+          _context4.prev = 0;
+          _context4.next = 3;
+          return Product.findAll({
+            where: {
+              storeId: id
+            }
+          });
+        case 3:
+          productRes = _context4.sent;
+          return _context4.abrupt("return", productRes);
+        case 7:
+          _context4.prev = 7;
+          _context4.t0 = _context4["catch"](0);
+          console.log(_context4.t0, 'error');
+          throw _context4.t0;
+        case 11:
+        case "end":
+          return _context4.stop();
+      }
+    }, _callee4, null, [[0, 7]]);
+  }));
+  return function getProductByStore(_x4) {
+    return _ref4.apply(this, arguments);
+  };
+}();
+exports.getProductByStore = getProductByStore;

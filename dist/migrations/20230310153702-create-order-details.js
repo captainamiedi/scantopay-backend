@@ -24,8 +24,15 @@ module.exports = {
               total: {
                 type: Sequelize.DECIMAL(10, 2)
               },
+              serviceCharge: {
+                type: Sequelize.DECIMAL(10, 2)
+              },
               paymentId: {
                 type: Sequelize.UUID
+              },
+              storeId: {
+                type: Sequelize.UUID,
+                allowNull: false
               },
               createdAt: {
                 allowNull: false,
