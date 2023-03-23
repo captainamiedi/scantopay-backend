@@ -33,7 +33,7 @@ export const getOrderByIdService = async(id) => {
 
 export const getAllOrderForAUserService = async(id) => {
     try {
-        const orderRes = await OrderDetails.findAll({
+        const orderRes = await OrderDetails.findAndCountAll({
             where: {userId: id},
             include: {
                 model: Store,
