@@ -1,5 +1,5 @@
-import { createOrderItemService } from "../Service/orderService";
-import { errorResponse, successResponse } from "../Utils/response";
+import { createOrderItemService, getAllOrderForAUserService, getAllOrdersForAStoreService, getOrderItemByIdService } from "../Service/orderService";
+import { errorResponse, successResponse, successResponseWithData } from "../Utils/response";
 import statusCode from "../Utils/statusCode";
 
 
@@ -23,5 +23,35 @@ export default {
             console.log(error, 'from controller error');
             return errorResponse(res, error.statusCode || statusCode.serverError, error)
         }
-    }
+    },
+    getOrderItemByOrderId: async (req, res) => {
+        try {
+            const {id} = req.params
+            const orderData = await getOrderItemByIdService(id)
+            return successResponseWithData(res, statusCode.success, 'Retrieve successfully', orderData)
+        } catch (error) {
+            console.log(error, 'from controller error');
+            return errorResponse(res, error.statusCode || statusCode.serverError, error) 
+        }
+    },
+    getAllOrderByStoreId: async (req, res) => {
+        try {
+            const {id} = req.params
+            const orderData = await getAllOrdersForAStoreService(id)
+            return successResponseWithData(res, statusCode.success, 'Retrieve successfully', orderData)
+        } catch (error) {
+            console.log(error, 'from controller error');
+            return errorResponse(res, error.statusCode || statusCode.serverError, error) 
+        }
+    },
+    getAllOrderByUserId: async (req, res) => {
+        try {
+            
+            const orderData = await getAllOrderForAUserService(req.userData.id)
+            return successResponseWithData(res, statusCode.success, 'Retrieve successfully', orderData)
+        } catch (error) {
+            console.log(error, 'from controller error');
+            return errorResponse(res, error.statusCode || statusCode.serverError, error) 
+        }
+    },
 }
