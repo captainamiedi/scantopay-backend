@@ -21,6 +21,10 @@ module.exports = {
       paymentId: {
         type: Sequelize.UUID
       },
+      status: {
+        type: Sequelize.ENUM('pending', 'success', 'failed', 'reversed'),
+        defaultValue: 'pending'
+      },
       storeId: {
         type: Sequelize.UUID,
         allowNull: false,
