@@ -18,7 +18,7 @@ export default {
                 await createOrderItemService(orderItem)
             })
 
-            return successResponse(res, statusCode.created, 'successfully created!')
+            return successResponseWithData(res, statusCode.created, 'successfully created!', {orderId: req.orderData})
         } catch (error) {
             console.log(error, 'from controller error');
             return errorResponse(res, error.statusCode || statusCode.serverError, error)

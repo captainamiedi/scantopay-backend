@@ -38,6 +38,10 @@ module.exports = (sequelize, DataTypes) => {
     total: {
       type: DataTypes.INTEGER
     },
+    status: {
+      type: DataTypes.ENUM('pending', 'success', 'failed', 'reversed'),
+      defaultValue: 'pending'
+    },
     serviceCharge: {
       type: DataTypes.INTEGER
     },
