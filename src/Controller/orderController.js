@@ -11,7 +11,7 @@ export default {
             cartData.map(async (item) => {
                 const orderItem = {
                     productId: item.productId,
-                    quantity: item.quantity,
+                    quantity: item.productQuantity,
                     discount: item.discount,
                     orderId: req.orderData
                 }

@@ -7,12 +7,13 @@ import transactionController from "../Controller/transactionController.js";
 
 const route = Router()
 const {createOrderDetails, getOrderItemByOrderId, getAllOrderByStoreId, getAllOrderByUserId} = orderController
-const {paystackWebHook } = transactionController
+const {paystackWebHook, createTransaction } = transactionController
 
 route.post('/order', getToken, verifyToken, createOrder, createOrderDetails)
 route.get('/order/item/:id', getToken, verifyToken, getOrderItemByOrderId)
 route.get('/order/user', getToken, verifyToken, getAllOrderByUserId)
 route.get('/order/store/:id', getToken, verifyToken, getAllOrderByStoreId)
+route.post('/order/transaction', getToken, verifyToken, createTransaction)
 route.post('/paystack/webhook/url', paystackWebHook)
 
 export default route;
