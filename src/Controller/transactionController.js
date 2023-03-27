@@ -1,14 +1,28 @@
 import crypto from 'crypto'
 import { updateOrderPaymentStatus } from '../Service/orderService';
 import { createTransactionService } from '../Service/transactionService';
+import { errorResponse, successResponseWithData } from '../Utils/response';
+import statusCode from '../Utils/statusCode';
 
 const secret = process.env.CRYPTO_SECRET_KEY;
 export default {
     createTransaction: async (req, res) => {
         try {
-            
+            const {total, charges, status, transRef, orderId} = req.body
+            const payload = {
+                total,
+                charges, 
+                status, 
+                transRef, 
+                orderId,
+            }
+            await updateOrderPaymentStatus(orderId, status)
+            const transaction = await createTransactionService(payload)
+
+            return successResponseWithData(res, statusCode.success, 'Transaction Created', transaction)
         } catch (error) {
-            console.log(error, 'from transaction page');
+            return errorResponse(res, error.statusCode || statusCode.serverError, error)
+            // console.log(error, 'from transaction page');
         }
     },
     paystackWebHook: async (req, res) => {

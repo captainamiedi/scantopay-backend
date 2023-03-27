@@ -22,6 +22,9 @@ module.exports = {
       subCharges: {
         type: Sequelize.DECIMAL(10, 2)
       },
+      transRef: {
+        type: Sequelize.STRING
+      },
       status: {
         type: Sequelize.ENUM('Pending', 'Successful', 'Failed', 'Reversed')
       },

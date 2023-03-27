@@ -50,6 +50,9 @@ module.exports = (sequelize, DataTypes) => {
     status: {
       type: DataTypes.ENUM('Pending', 'Successful', 'Failed', 'Reversed')
     },
+    transRef: {
+      type: DataTypes.STRING
+    },
     userId: {
       type:DataTypes.UUID,
       allowNull: false
