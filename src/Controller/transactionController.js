@@ -8,12 +8,12 @@ const secret = process.env.CRYPTO_SECRET_KEY;
 export default {
     createTransaction: async (req, res) => {
         try {
-            const {total, charges, status, transRef, orderId} = req.body
+            const {total, charges, status, transref, orderId} = req.body
             const payload = {
                 total,
                 charges, 
                 status, 
-                transRef, 
+                transref, 
                 orderId,
             }
             await updateOrderPaymentStatus(orderId, status)
