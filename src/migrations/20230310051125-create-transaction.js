@@ -22,7 +22,7 @@ module.exports = {
       subCharges: {
         type: Sequelize.DECIMAL(10, 2)
       },
-      transRef: {
+      transref: {
         type: Sequelize.STRING
       },
       status: {
