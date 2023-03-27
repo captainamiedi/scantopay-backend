@@ -20,6 +20,15 @@ export const updateOrderPaymentStatus = async (id, status) => {
     }
 }
 
+export const updateOrderPaymentid = async (id, paymentId) => {
+    try {
+        const orderRes = await OrderDetails.update({ paymentId }, {where: {id}})
+        return orderRes
+    } catch (error) {
+        throw error
+    }
+}
+
 export const createOrderItemService = async (orderObj) => {
     try {
         const orderRes = await OrderItem.create(orderObj)

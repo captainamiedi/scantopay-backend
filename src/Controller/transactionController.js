@@ -27,6 +27,7 @@ export default {
     },
     paystackWebHook: async (req, res) => {
         try {
+            console.log(req.body, 'req body');
             const hash = crypto.createHmac('sha512', secret).update(JSON.stringify(req.body)).digest('hex');
             if (hash == req.headers['x-paystack-signature']) {
                 // Retrieve the request's body
