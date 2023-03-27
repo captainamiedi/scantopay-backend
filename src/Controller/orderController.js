@@ -1,4 +1,4 @@
-import { createOrderItemService, getAllOrderForAUserService, getAllOrdersForAStoreService, getOrderItemByIdService, updateOrderPaymentid } from "../Service/orderService";
+import { createOrderDetailsService, createOrderItemService, getAllOrderForAUserService, getAllOrdersForAStoreService, getOrderItemByIdService, updateOrderPaymentid } from "../Service/orderService";
 import { createTransactionService } from "../Service/transactionService";
 import { errorResponse, successResponse, successResponseWithData } from "../Utils/response";
 import statusCode from "../Utils/statusCode";
@@ -67,4 +67,45 @@ export default {
             return errorResponse(res, error.statusCode || statusCode.serverError, error) 
         }
     },
+
+    createCombineOrderAndTransaction: async (req, res) => {
+        try {
+            const {total, storeId, serviceCharge, status, cart, transref} = req.body
+            const orderObj = {
+                userId: req.userData.id,
+                total, 
+                storeId, 
+                serviceCharge,
+                status
+            }
+
+
+            const orderRes = await createOrderDetailsService(orderObj)
+            const cartData = JSON.parse(cart);
+            cartData.map(async (item) => {
+                const orderItem = {
+                    productId: item.id,
+                    quantity: item.productQuantity,
+                    discount: item.discount,
+                    orderId: orderRes.id
+                }
+                console.log(orderItem, 'orderitem');
+                await createOrderItemService(orderItem)
+            })
+            const transactionPayload = {
+                total,
+                charges: serviceCharge, 
+                status: status === 'success' ? 'Successful' : status === 'pending' ? 'Pending' : 'Pending',
+                transref, 
+                orderId: orderRes.id,
+                storeId,
+                userId: req.userData.id
+            }
+            const transaction = await createTransactionService(transactionPayload)
+            return successResponse(res, statusCode.created, 'successfully created!')
+        } catch (error) {
+            console.log(error, 'error');
+            return errorResponse(res, error.statusCode || statusCode.serverError, error) 
+        }
+    }
 }
