@@ -11,7 +11,7 @@ export default {
             const cartData = JSON.parse(cart);
             cartData.map(async (item) => {
                 const orderItem = {
-                    productId: item.productId,
+                    productId: item.id,
                     quantity: item.productQuantity,
                     discount: item.discount,
                     orderId: req.orderData
