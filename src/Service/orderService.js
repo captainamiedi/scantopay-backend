@@ -41,7 +41,10 @@ export const createOrderItemService = async (orderObj) => {
 export const getOrderByIdService = async(id) => {
     try {
         const orderRes = await OrderDetails.findAll({
-            where: { id}
+            where: { id},
+            order: [
+                'createdAt', 'ASC'
+            ]
         })
         return orderRes
     } catch (error) {

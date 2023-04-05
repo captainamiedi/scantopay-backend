@@ -102,7 +102,7 @@ export default {
                 userId: req.userData.id
             }
             const transaction = await createTransactionService(transactionPayload)
-            return successResponse(res, statusCode.created, 'successfully created!')
+            return successResponseWithData(res, statusCode.created, 'successfully created!')
         } catch (error) {
             console.log(error, 'error');
             return errorResponse(res, error.statusCode || statusCode.serverError, error) 
