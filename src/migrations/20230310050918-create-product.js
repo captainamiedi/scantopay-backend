@@ -30,6 +30,9 @@ module.exports = {
       storeId: {
         type: Sequelize.UUID
       },
+      multipleImg: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

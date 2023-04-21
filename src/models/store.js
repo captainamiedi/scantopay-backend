@@ -60,10 +60,19 @@ module.exports = (sequelize, DataTypes) => {
     state: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   }, {
     sequelize,
     modelName: 'Store',
+    defaultScope: {
+      attributes: {
+        exclude: ['password']
+      }
+    }
   });
   return Store;
 };

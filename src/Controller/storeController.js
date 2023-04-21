@@ -89,4 +89,26 @@ export default {
             return errorResponse(res, error.statusCode|| statusCode.serverError, error)  
         }
     },
+    createStoreWithImage: async (req, res) => {
+        try {
+            const {name, image, description, discount, contactEmail, phoneNumber, address, state} = req.body;
+            const storeObj = {
+                name,
+                image: req.file, 
+                description,
+                discount,
+                contactEmail,
+                phoneNumber,
+                address,
+                state
+            }
+
+            const store = await createStore(storeObj)
+
+            return successResponseWithData(res, statusCode.created, 'Store Created', store)
+        } catch (error) {
+            console.log(error);
+            return errorResponse(res, error.statusCode || statusCode.serverError, error)
+        }
+    },
 }

@@ -45,6 +45,9 @@ module.exports = (sequelize, DataTypes) => {
     storeId: {
       type: DataTypes.UUID,
       allowNull: false
+    },
+    multipleImg: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
     }
   }, {
     sequelize,

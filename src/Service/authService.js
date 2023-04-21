@@ -1,7 +1,7 @@
 import models from '../models/index.js'
 import { compareSync } from 'bcrypt';
 
-const {User} = models
+const {User, Store} = models
 
 
 export const signupService = async (userObj) => {
@@ -20,6 +20,14 @@ export const findUserByEmail = async (email) => {
         throw error
     }
 }
+
+export const findUserStoreByEmail = async (email) => {
+    try {
+        return await Store.findOne({where: {contactEmail: email}})
+    } catch (error) {
+        throw error
+    }
+}
 export const findUserById = async (id) => {
     try {
         return await User.findOne({where: {id}})
@@ -28,9 +36,25 @@ export const findUserById = async (id) => {
     }
 }
 
+export const findStoreById = async (id) => {
+    try {
+        return await Store.findOne({where: {id}})
+    } catch (error) {
+        throw error
+    }
+}
+
 export const updatePassword = async (hash, id) => {
     try {
       return await User.update(hash, { where: { id } });
+    } catch (err) {
+      throw err;
+    }
+};
+
+export const updateStorePassword = async (hash, id) => {
+    try {
+      return await Store.update({password: hash}, { where: { id } });
     } catch (err) {
       throw err;
     }

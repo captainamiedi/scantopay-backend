@@ -1,4 +1,4 @@
-import { createOrderDetailsService, createOrderItemService, getAllOrderForAUserService, getAllOrdersForAStoreService, getOrderItemByIdService, updateOrderPaymentid } from "../Service/orderService";
+import { createOrderDetailsService, createOrderItemService, getAllOrderForAUserService, getAllOrdersForAStoreService, getOrderByDate, getOrderItemByIdService, updateOrderPaymentid } from "../Service/orderService";
 import { createTransactionService } from "../Service/transactionService";
 import { errorResponse, successResponse, successResponseWithData } from "../Utils/response";
 import statusCode from "../Utils/statusCode";
@@ -106,6 +106,17 @@ export default {
         } catch (error) {
             console.log(error, 'error');
             return errorResponse(res, error.statusCode || statusCode.serverError, error) 
+        }
+    },
+    getOrderByDate: async (req, res) => {
+        try {
+            const {date} = req.params
+            const id = req.userData.id
+            const orderData = await getOrderByDate(date, id)
+            return successResponseWithData(res, statusCode.success, 'Retrieve successfully', orderData)
+        } catch (error) {
+            console.log(error, 'error');
+            return errorResponse(res, error.statusCode || statusCode.serverError, error)     
         }
     }
 }

@@ -4,5 +4,6 @@ export default {
     badRequest: 400,
     notFound: 404,
     unauthorized: 401,
-    serverError: 500
+    serverError: 500,
+    conflict: 409,
 };
